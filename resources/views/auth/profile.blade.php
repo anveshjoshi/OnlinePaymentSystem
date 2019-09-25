@@ -15,7 +15,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->company_name }}
+                                    {{ Auth::user()->company_name }}
                                 </div>
                             </div>
 
@@ -25,7 +25,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->name }}
+                                    {{ Auth::user()->name }}
                                 </div>
                             </div>
 
@@ -35,7 +35,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->email }}
+                                    {{ Auth::user()->email }}
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->phone }}
+                                    {{ Auth::user()->phone }}
                                 </div>
                             </div>
 
@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->business }}
+                                    {{ Auth::user()->business }}
                                 </div>
                             </div>
 
@@ -65,7 +65,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->address }}
+                                    {{ Auth::user()->address }}
                                 </div>
                             </div>
 
@@ -75,7 +75,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->website }}
+                                    {{ Auth::user()->website }}
                                 </div>
                             </div>
 
