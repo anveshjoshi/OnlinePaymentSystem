@@ -34,9 +34,4 @@ class HomeController extends Controller
         return view('auth.profile', compact('user'));
     }
 
-    public function viewIndividualUserProfile(User $user)
-    {
-        return view('individualuser-auth.profile', compact('individual_user'));
-    }
-
 }

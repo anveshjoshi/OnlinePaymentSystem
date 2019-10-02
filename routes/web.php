@@ -20,8 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('profile', ['as' => 'users.profile', 'uses' => 'HomeController@viewProfile']);
-Route::get('profile', ['as' => 'individual_user.profile', 'uses' => 'HomeController@viewIndividualUserProfile']);
 
+Route::get('individual_user/profile', ['as' => 'individual_user.profile', 'uses' => 'IndividualUserController@viewIndividualUserProfile']);
+Route::get('individual_user/kyc', ['as' => 'individual_user.kyc', 'uses' => 'IndividualUserController@viewIndividualUserKyc']);
+
+Route::get('individual_user/invoice_form', ['as' => 'individual_user.invoice_form', 'uses' => 'InvoiceController@index']);
+Route::post('individual_user/invoice_form', ['as' => 'individual_user.invoice_form', 'uses' => 'InvoiceController@storeInvoice']);
 
 Route::group(['prefix'=>'individual_user'], function() {
 
@@ -42,3 +46,4 @@ Route::group(['prefix'=>'individual_user'], function() {
 });
 
 Route::view('/individual_user/home', 'individualuser-home')->middleware('individual_user');
+

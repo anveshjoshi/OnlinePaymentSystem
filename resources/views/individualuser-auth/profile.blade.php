@@ -15,7 +15,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->name }}
+                                    {{ Auth::guard('individual_user')->user()->name }}
                                 </div>
                             </div>
 
@@ -25,7 +25,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->email }}
+                                    {{ Auth::guard('individual_user')->user()->email }}
                                 </div>
                             </div>
 
@@ -35,7 +35,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->phone }}
+                                    {{ Auth::guard('individual_user')->user()->phone }}
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->business }}
+                                    {{ Auth::guard('individual_user')->user()->business }}
                                 </div>
                             </div>
 
@@ -55,14 +55,14 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ $user->address }}
+                                    {{ Auth::guard('individual_user')->user()->address }}
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="button" class="btn btn-primary">
-                                        {{ __('Update KYC') }}
+                                        <a href="{{ route('individual_user.kyc')  }}" style="text-decoration: none; color: #fff;">{{ __('Update KYC') }}</a>
                                     </button>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@ class IndividualUserMiddleware
     {
         if(!auth()->guard($guard)->check())
         {
-            return redirect('/home');
+            return redirect('/individual_user/home');
         }
         return $next($request);
     }

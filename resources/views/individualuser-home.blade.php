@@ -14,8 +14,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <button class="btn btn-primary">Transaction History</button>
+                    <button class="btn btn-primary">
+                        <a href="{{ route('individual_user.invoice_form')  }}" style="text-decoration: none; color: #fff;">{{ __('New Transaction') }}</a>
+                    </button>
                 </div>
+
             </div>
         </div>
     </div>
