@@ -11,15 +11,28 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="sender"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Sender Number') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="sender" type="text"
                                            class="form-control @error('sender') is-invalid @enderror"
-                                           name="sender" value="{{ Auth::guard('individual_user')->user()->phone }}" required autocomplete="sender" autofocus readonly>
+                                           name="sender" value="{{ Auth::guard('individual_user')->user()->phone }}" required autocomplete="sender" autofocus readonly hidden>
 
                                     @error('sender')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+
+                                <div class="col-md-6">
+                                    <input id="sender_name" type="text"
+                                           class="form-control @error('sender_name') is-invalid @enderror"
+                                           name="sender_name" value="{{ Auth::guard('individual_user')->user()->name }}" required autocomplete="sender_name" autofocus readonly hidden>
+
+                                    @error('sender_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

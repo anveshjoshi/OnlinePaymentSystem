@@ -16,7 +16,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            {{$row->sender }}
+                            {{$row->sender_name }}
                         </div>
                     </div>
 
@@ -69,7 +69,6 @@
                                 {{ $row->due_date }}
                             </div>
                         </div>
-
 
                 @endforeach
                 </div>

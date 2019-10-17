@@ -19,6 +19,7 @@ class InvoiceController extends Controller
         $invoice = new Invoice();
 
         $invoice->sender = request('sender');
+        $invoice->sender_name = request('sender_name');
         $invoice->payer_name = request('payer_name');
         $invoice->payer_email = request('payer_email');
         $invoice->payer_phone = request('payer_phone');

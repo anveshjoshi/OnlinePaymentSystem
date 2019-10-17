@@ -20,7 +20,7 @@ class NotificationController extends Controller
         );
 
 
-        Mail::to ($data)->send(new notification ($data));
+        Mail::to ('arbin@gmail.com')->send(new notification ($data));
 
         return redirect('/individual_user/home');
     }
