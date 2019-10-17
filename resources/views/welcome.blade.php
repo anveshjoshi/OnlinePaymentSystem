@@ -51,7 +51,7 @@
             @include('navigation-bar')
             <div class="content">
                 <div class="title m-b-md">
-                    MERCHANT
+                    Online Payment System
                 </div>
             </div>
 

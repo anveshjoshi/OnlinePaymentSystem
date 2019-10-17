@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Invoice;
+use App\CompanyInvoice;
 use Illuminate\Support\Facades\Auth;
 
-class InvoiceController extends Controller
+class CompanyInvoiceController extends Controller
 {
-
     public function index()
     {
-        return view('individual_invoice_form');
+        return view('company_invoice_form');
     }
 
-    public function storeInvoice()
+    public function storeInvoice(Request $request)
     {
-        $invoice = new Invoice();
+        $invoice = new CompanyInvoice();
 
         $invoice->sender = request('sender');
         $invoice->payer_name = request('payer_name');
@@ -62,44 +61,44 @@ class InvoiceController extends Controller
 //        ]);
         $invoice->save();
 
-        return redirect('/individual_user/notification');
+        return redirect('/notification');
     }
 
     private function getOrderId(){
 
         do{
             $order_id = $this->generateUniqueCode();
-            $checkExsitingOrderId = Invoice::where('order_id', $order_id)->get()->first();
+            $checkExsitingOrderId = CompanyInvoice::where('order_id', $order_id)->get()->first();
         }while($checkExsitingOrderId);
 
-       return $order_id;
+        return $order_id;
     }
 
     private function getTin(){
 
         do{
             $tin = $this->generateUniqueCode();
-            $checkExsitingTin = Invoice::where('tin', $tin)->get()->first();
+            $checkExsitingTin = CompanyInvoice::where('tin', $tin)->get()->first();
         }while($checkExsitingTin);
 
         return $tin;
     }
 
     private function generateUniqueCode(){
-        return rand(0000, 9999);
+        return rand(000000, 999999);
     }
 
 
     public function viewTransactionHistory()
     {
-        $invoice = Invoice::where('sender', Auth::guard('individual_user')->user()->phone)->latest()->paginate(5);
+        $invoice = CompanyInvoice::where('sender', Auth::guard('user')->user()->phone)->latest()->paginate(5);
         return view('transaction_history', compact('invoice'))
-                        ->with('i', (request()->input('page', 1)-1)*5);
+            ->with('i', (request()->input('page', 1)-1)*5);
     }
 
     public function showAllTransactions()
     {
-        $invoice = Invoice::latest()->paginate(5);
+        $invoice = CompanyInvoice::latest()->paginate(5);
         return view('all_transactions', compact('invoice'))
             ->with('i', (request()->input('page', 1)-1)*5);
     }

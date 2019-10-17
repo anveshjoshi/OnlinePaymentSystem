@@ -17,6 +17,10 @@
                         <button class="btn btn-primary">
                             <a href="{{ route('admin.all_transactions')  }}" style="text-decoration: none; color: #fff;">{{ __('View all transactions') }}</a>
                         </button>
+
+                            <button class="btn btn-primary">
+                                <a href="{{ route('admin.register')  }}" style="text-decoration: none; color: #fff;">{{ __('Add another Admin') }}</a>
+                            </button>
                     </div>
 
                 </div>

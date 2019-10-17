@@ -21,6 +21,17 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('profile', ['as' => 'users.profile', 'uses' => 'HomeController@viewProfile']);
 
+
+Route::get('/invoice_form', ['as' => 'user.invoice_form', 'uses' => 'CompanyInvoiceController@index']);
+Route::post('/invoice_form', ['as' => 'user.invoice_form', 'uses' => 'CompanyInvoiceController@storeInvoice']);
+
+Route::get('/notification', function(){
+    return view('notification');
+});
+
+Route::get('/transaction_history', ['as' => 'user.transaction_history', 'uses' => 'CompanyInvoiceController@viewTransactionHistory']);
+
+
 Route::get('individual_user/profile', ['as' => 'individual_user.profile', 'uses' => 'IndividualUserController@viewIndividualUserProfile']);
 Route::get('individual_user/kyc', ['as' => 'individual_user.kyc', 'uses' => 'KYCController@viewIndividualUserKyc']);
 Route::post('individual_user/kyc', ['as' => 'individual_user.kyc', 'uses' => 'KYCController@storeKYC']);
@@ -34,6 +45,11 @@ Route::get('/individual_user/notification', function(){
 });
 
 Route::get('individual_user/transaction_history', ['as' => 'individual_user.transaction_history', 'uses' => 'InvoiceController@viewTransactionHistory']);
+Route::get('/check_invoice', function (){
+   return view('check_invoice');
+});
+Route::get('/payment', ['as' => 'check_invoice', 'uses'=> 'PaymentController@checkInvoice']);
+
 
 Route::group(['prefix'=>'individual_user'], function() {
 
