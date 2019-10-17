@@ -22,10 +22,18 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('profile', ['as' => 'users.profile', 'uses' => 'HomeController@viewProfile']);
 
 Route::get('individual_user/profile', ['as' => 'individual_user.profile', 'uses' => 'IndividualUserController@viewIndividualUserProfile']);
-Route::get('individual_user/kyc', ['as' => 'individual_user.kyc', 'uses' => 'IndividualUserController@viewIndividualUserKyc']);
+Route::get('individual_user/kyc', ['as' => 'individual_user.kyc', 'uses' => 'KYCController@viewIndividualUserKyc']);
+Route::post('individual_user/kyc', ['as' => 'individual_user.kyc', 'uses' => 'KYCController@storeKYC']);
 
 Route::get('individual_user/invoice_form', ['as' => 'individual_user.invoice_form', 'uses' => 'InvoiceController@index']);
 Route::post('individual_user/invoice_form', ['as' => 'individual_user.invoice_form', 'uses' => 'InvoiceController@storeInvoice']);
+Route::get('notification', ['as' => 'notification', 'uses' => 'NotificationController@send']);
+
+Route::get('/individual_user/notification', function(){
+   return view('notification');
+});
+
+Route::get('individual_user/transaction_history', ['as' => 'individual_user.transaction_history', 'uses' => 'InvoiceController@viewTransactionHistory']);
 
 Route::group(['prefix'=>'individual_user'], function() {
 
@@ -47,3 +55,30 @@ Route::group(['prefix'=>'individual_user'], function() {
 
 Route::view('/individual_user/home', 'individualuser-home')->middleware('individual_user');
 
+// Admin Routes....
+Route::group(['prefix'=>'admin'], function() {
+    // Login Routes...
+    Route::get('login', ['as' => 'admin.login', 'uses' => 'AdminAuth\LoginController@showLoginForm']);
+    Route::post('login', ['as' => 'login.post', 'uses' => 'AdminAuth\LoginController@login']);
+    Route::post('logout', ['as' => 'admin.logout', 'uses' => 'AdminAuth\LoginController@logout']);
+
+
+// Registration Routes...
+    Route::get('register', ['as' => 'admin.register', 'uses' => 'AdminAuth\RegisterController@showRegistrationForm']);
+    Route::post('register', ['uses' => 'AdminAuth\RegisterController@register']);
+
+// Password Reset Routes...
+    Route::get('password/reset', ['as' => 'admin.password.reset', 'uses' => 'AdminAuth\ForgotPasswordController@showLinkRequestForm']);
+    Route::post('password/email', ['as' => 'admin.password.email', 'uses' => 'AdminAuth\ForgotPasswordController@sendResetLinkEmail']);
+    Route::get('password/reset/{token}', ['as' => 'admin.password.reset.token', 'uses' => 'AdminAuth\ResetPasswordController@showResetForm']);
+    Route::post('password/reset', ['uses' => 'AdminAuth\ResetPasswordController@reset']);
+});
+
+Route::view('/admin/home', 'admin')->middleware('admin');
+
+Route::get('admin/all_transactions', ['as' => 'admin.all_transactions', 'uses' => 'InvoiceController@showAllTransactions']);
+
+Route::get('/test', function(){
+    $banks = json_decode(file_get_contents('https://techpay.technorio.com.np/sandbox/public/api/v1/nPay/get-bank-list?serviceCode=TOBPS&serviceApiKey=TOBPS'));
+        dd($banks);
+});

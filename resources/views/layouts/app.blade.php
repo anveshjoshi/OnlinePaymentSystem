@@ -54,6 +54,10 @@
                                         Company Login
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('admin.login') }}">
+                                        Admin Login
+                                    </a>
+
                                 </div>
                             </li>
                             @if (Route::has('register'))

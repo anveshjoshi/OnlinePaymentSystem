@@ -18,7 +18,7 @@ class CreateKycTable extends Migration
             $table->string('father_name');
             $table->string('mother_name');
             $table->string('grandfather_name');
-            $table->string('spouse_name');
+            $table->string('spouse_name')->nullable();
             $table->string('district');
             $table->string('vdc');
             $table->string('ward');
@@ -32,7 +32,7 @@ class CreateKycTable extends Migration
             $table->mediumText('front');
             $table->mediumText('back');
             $table->mediumText('pp_photo');
-            $table->unsignedBigInteger('individual_users_id');
+            $table->string('individual_users_id');
             $table->foreign('individual_users_id')->references('id')->on('individual_users');
             $table->timestamps();
         });

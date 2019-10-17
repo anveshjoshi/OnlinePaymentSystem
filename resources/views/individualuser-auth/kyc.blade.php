@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('KYC Form') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="individual_user.kyc">
+                        <form method="POST" action="{{ route('individual_user.kyc') }}" enctype="multipart/form-data">
                             @csrf
 
                             <h1>Family Information</h1>
@@ -192,12 +192,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="issued_from" class="col-md-4 col-form-label text-md-right">{{ __('Issued From') }}</label>
+                                <label for="issued_form" class="col-md-4 col-form-label text-md-right">{{ __('Issued From') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="issued_from" type="text" class="form-control @error('issued_from') is-invalid @enderror" name="issued_from" placeholder="Issued Loaction" required autocomplete="issued_from" autofocus>
+                                    <input id="issued_form" type="text" class="form-control @error('issued_form') is-invalid @enderror" name="issued_form" placeholder="Issued Loaction" required autocomplete="issued_form" autofocus>
 
-                                    @error('issued_from')
+                                    @error('issued_form')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -218,12 +218,12 @@
                                     @enderror
                                 </div>
                             </div>
-
+                         <h3>Upload photo of the identification document</h3>
                             <div class="form-group row">
-                                <label for="document_photo" class="col-md-4 col-form-label text-md-right">{{ __('Document Photo') }}</label>
+                                <label for="front" class="col-md-4 col-form-label text-md-right" >{{ __('Frontside') }}</label>
 
-                                <div class="col-md-3">
-                                    <input id="front" type="file" class="form-control @error('front') is-invalid @enderror" name="front" required autocomplete="front" autofocus>
+                                <div class="col-md-6">
+                                    <input class="py-2" id="front" type="file" class="form-control @error('front') is-invalid @enderror" name="front" required autocomplete="front" autofocus>
 
                                     @error('front')
                                     <span class="invalid-feedback" role="alert">
@@ -231,9 +231,11 @@
                                     </span>
                                     @enderror
                                 </div>
-
-                                <div class="col-md-3">
-                                    <input id="back" type="file" class="form-control @error('back') is-invalid @enderror" name="back" required autocomplete="back" autofocus>
+                            </div>
+                            <div class="form-group row">
+                                <label for="back" class="col-md-4 col-form-label text-md-right">{{ __('Backside') }}</label>
+                                <div class="col-md-6">
+                                    <input class="py-2" id="back" type="file" class="form-control @error('back') is-invalid @enderror" name="back" required autocomplete="back" autofocus>
 
                                     @error('back')
                                     <span class="invalid-feedback" role="alert">
@@ -247,9 +249,21 @@
                                 <label for="pp_photo" class="col-md-4 col-form-label text-md-right">{{ __('Passport size photo') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="pp_photo" type="file" class="form-control @error('pp_photo') is-invalid @enderror" name="pp_photo" required autocomplete="pp_photo" autofocus>
+                                    <input class="py-2" id="pp_photo" type="file" class="form-control @error('pp_photo') is-invalid @enderror" name="pp_photo" required autocomplete="pp_photo" autofocus>
 
                                     @error('pp_photo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <input id="individual_user_id" type="hidden" class="form-control @error('individual_user_id') is-invalid @enderror" name="individual_user_id" value="{{ Auth::guard('individual_user')->user()->id }}" autofocus readonly>
+
+                                    @error('individual_user_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

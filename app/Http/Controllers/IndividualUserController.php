@@ -29,9 +29,4 @@ class IndividualUserController extends Controller
         return view('individualuser-auth.profile', compact('individual_user'));
     }
 
-    public function viewIndividualUserKyc()
-    {
-        return view('individualuser-auth.kyc');
-    }
-
 }
