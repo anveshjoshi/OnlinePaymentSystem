@@ -51,6 +51,7 @@ Route::get('/check_invoice', function (){
 Route::get('/payment', ['as' => 'check_invoice', 'uses'=> 'PaymentController@checkInvoice']);
 
 
+
 Route::group(['prefix'=>'individual_user'], function() {
 
 // Login Routes...
