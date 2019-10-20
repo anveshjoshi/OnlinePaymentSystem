@@ -3,8 +3,8 @@
 @section('content')
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-md-center">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Invoice details') }}</div>
 
@@ -88,8 +88,135 @@
         </div>
 
     </div>
+    <div class="row justify-content-md-start">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Please fill this form to proceed to payment') }}</div>
+                <div class="card-body">
+                    <form method="POST" action="">
+                        @csrf
 
-    <div class>
+                        <h1>Payer Information</h1>
+                        <div class="form-group row">
+                            <label for="payer_name"
+                                   class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="payer_name" type="text"
+                                       class="form-control @error('payer_name') is-invalid @enderror"
+                                       name="payer_name" required autocomplete="payer_name" autofocus>
+
+                                @error('payer_name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="payer_email"
+                                   class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="payer_email" type="text"
+                                       class="form-control @error('payer_email') is-invalid @enderror"
+                                       name="payer_email" required autocomplete="payer_email" autofocus>
+
+                                @error('payer_email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="payer_phone"
+                                   class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="payer_phone" type="text"
+                                       class="form-control @error('payer_phone') is-invalid @enderror"
+                                       name="payer_phone" required autocomplete="payer_phone" autofocus>
+
+                                @error('payer_phone')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <h1>Merchant Information</h1>
+                        <div class="form-group row">
+                            <label for="selected_merchant"
+                                   class="col-md-4 col-form-label text-md-right">{{ __('Selected Merchant') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="selected_merchant" type="text"
+                                       class="form-control @error('selected_merchant') is-invalid @enderror"
+                                       name="selected_merchant" id="selected_merchant" required autofocus>
+
+                                @error('selected_merchant')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="due_amount"
+                                   class="col-md-4 col-form-label text-md-right">{{ __('Payer Merchant ID') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="due_amount" type="text"
+                                       class="form-control @error('due_amount') is-invalid @enderror"
+                                       name="due_amount" required autocomplete="due_amount" autofocus>
+
+                                @error('due_amount')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Submit') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">{{ __('Select bank') }}</div>
+                <div class="card-body">
+                    <h5>
+                    E-banks
+                    </h5>
+                    <hr>
+                        <img src="http://gateway.sandbox.npay.com.np/Images/testbank_logo.png" alt="e-test_bank" id="e-test_bank" onclick="">
+
+
+                    <h5>
+                        Mobile banks
+                    </h5>
+                    <hr>
+                        <img src="http://gateway.sandbox.npay.com.np/Images/testbank_logo.png" alt="m-test_bank" id="m-test_bank" onclick="">
+
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </div>
