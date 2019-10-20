@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <h1>Transaction History</h1>
                 <table class="table table-bordered table-striped">
                     <tr>
@@ -14,7 +14,7 @@
                         <th>Due Amount</th>
                         <th>Order ID</th>
                         <th>TIN Number</th>
-                        {{--<th>Specified Merchant</th>--}}
+                        <th>Specified Merchant</th>
                         <th>Due Date</th>
                     </tr>
                     @foreach($invoice as $row)
@@ -26,7 +26,9 @@
                             <td>{{ $row->due_amount }}</td>
                             <td>{{ $row->order_id }}</td>
                             <td>{{ $row->tin }}</td>
-                            {{--<td>{{ $row->specified_merchant }}</td>--}}
+                            <td>@foreach($row->specified_merchant as $merchant)
+                                    {{ $merchant }} |
+                                @endforeach</td>
                             <td>{{ $row->due_date }}</td>
                         </tr>
                     @endforeach

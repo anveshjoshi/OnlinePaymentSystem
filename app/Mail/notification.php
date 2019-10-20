@@ -12,15 +12,15 @@ use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 class notification extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
+    public $field;
     /**
      * Create a new message instance.
      *
      * @param $data
      */
-    public function __construct($data)
+    public function __construct($field)
     {
-        $this -> data =$data;
+        $this -> field =$field;
 
     }
 
@@ -32,7 +32,7 @@ class notification extends Mailable
     public function build()
     {
 
-        return $this->from('OLPS@gmail.com')->subject('Payment Inquiry')->view('dynamic_email_template')->with('data', $this->data);
+        return $this->view('dynamic_email_template');
 
     }
 }

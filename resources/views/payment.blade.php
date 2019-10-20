@@ -70,10 +70,27 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                        <div class="col-md-6">
+                            {{ __('Specified Merchant') }}
+                        </div>
+
+                        <div class="col-md-6">
+                            @foreach($row->specified_merchant as $merchant)
+                                {{ $merchant }} |
+                            @endforeach
+                        </div>
+                </div>
+
                 @endforeach
                 </div>
             </div>
         </div>
+
+    </div>
+
+    <div class>
+
     </div>
 </div>
 

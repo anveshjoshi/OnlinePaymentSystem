@@ -8,7 +8,7 @@
                      <div class="card-header">{{ __('Notification') }}</div>
 
                      <div class="card-body">
-                         <form method="POST" action=" {{ route('individual_user.invoice_form') }}">
+                         <form method="POST" action=" {{ route('notification') }}">
                              @csrf
                          <div class="form-group row">
                              <label for="reminder"
