@@ -95,7 +95,10 @@ Route::view('/admin/home', 'admin')->middleware('admin');
 
 Route::get('admin/all_transactions', ['as' => 'admin.all_transactions', 'uses' => 'InvoiceController@showAllTransactions']);
 
-Route::get('/test', function(){
-    $banks = json_decode(file_get_contents('https://techpay.technorio.com.np/sandbox/public/api/v1/nPay/get-bank-list?serviceCode=TOBPS&serviceApiKey=TOBPS'));
-        dd($banks);
+Route::get('/success', function (){
+    return view('success');
 });
+
+Route::get('/getPaymentResponse', ['as' => 'payment', 'uses'=>'APIController@index']);
+
+Route::get('orderConfirmation', ['uses' => 'InvoiceController@updatePaymentStatus']);

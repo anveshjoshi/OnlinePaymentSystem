@@ -153,18 +153,9 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Specify Merchant') }}</label>
 
                                 <div class="col-md-6">
-                                    {{--<select id="specified_merchant"--}}
-                                            {{--class="form-control @error('specified_merchant') is-invalid @enderror"--}}
-                                            {{--name="specified_merchant" required autocomplete="specified_merchant"--}}
-                                            {{--autofocus>--}}
-                                        {{--<option value="" disabled selected>Select Merchant</option>--}}
-                                        {{--<option value="e-Sewa">e-Sewa</option>--}}
-                                        {{--<option value="khalti">Khalti</option>--}}
-                                        {{--<option value="e-bank">E-bank</option>--}}
-                                    {{--</select>--}}
-                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="eSewa">eSewa
-                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="Khalti">Khalti
-                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="eBank">eBank
+                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="E-bank">E-bank
+                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="M-Bank">M-Bank
+
                                     @error('specified_merchant')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

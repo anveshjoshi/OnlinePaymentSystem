@@ -91,7 +91,7 @@ class CompanyInvoiceController extends Controller
 
     public function viewTransactionHistory()
     {
-        $invoice = CompanyInvoice::where('sender', Auth::guard('user')->user()->phone)->latest()->paginate(5);
+        $invoice = CompanyInvoice::where('sender', Auth::user()->phone)->latest()->paginate(5);
         return view('transaction_history', compact('invoice'))
             ->with('i', (request()->input('page', 1)-1)*5);
     }

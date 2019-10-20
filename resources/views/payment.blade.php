@@ -81,21 +81,33 @@
                             @endforeach
                         </div>
                 </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                {{ __('Status') }}
+                            </div>
 
+                            <div class="col-md-6">
+                                {{ $row->status }}
+                            </div>
+                        </div>
 
                 </div>
             </div>
         </div>
 
     </div>
+
+    @if($row['status']=='paid')
+        <h1>This invoice has been paid.</h1>
+    @else
     <div class="row justify-content-md-start">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Please fill this form to proceed to payment') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="GET" action="{{ route('payment') }}">
                         @csrf
-
+@foreach($data as $row)
                         <h1>Payer Information</h1>
                         <div class="form-group row">
                             <label for="payer_name"
@@ -149,15 +161,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="payer_phone"
+                            <label for="order_id"
                                    class="col-md-4 col-form-label text-md-right">{{ __('Order ID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="sender" type="text"
-                                       class="form-control @error('sender') is-invalid @enderror"
-                                       name="sender" value="{{ $row->order_id }}" required autocomplete="sender" autofocus readonly>
+                                <input id="order_id" type="text"
+                                       class="form-control @error('order_id') is-invalid @enderror"
+                                       name="order_id" value="{{ $row->order_id }}" required autocomplete="order_id" autofocus readonly>
 
-                                @error('sender')
+                                @error('order_id')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -166,15 +178,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="payer_phone"
+                            <label for="payment_detail"
                                    class="col-md-4 col-form-label text-md-right">{{ __('Payment Detail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="sender" type="text"
-                                       class="form-control @error('sender') is-invalid @enderror"
-                                       name="sender" value="{{ $row->payment_detail }}" required autocomplete="sender" autofocus readonly>
+                                <input id="payment_detail" type="text"
+                                       class="form-control @error('payment_detail') is-invalid @enderror"
+                                       name="payment_detail" value="{{ $row->payment_detail }}" required autocomplete="payment_detail" autofocus readonly>
 
-                                @error('sender')
+                                @error('payment_detail')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -183,15 +195,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="payer_phone"
+                            <label for="due_amount"
                                    class="col-md-4 col-form-label text-md-right">{{ __('Payment Amount') }}</label>
 
                             <div class="col-md-6">
-                                <input id="sender" type="text"
-                                       class="form-control @error('sender') is-invalid @enderror"
-                                       name="sender" value="{{ $row->due_amount }}" required autocomplete="sender" autofocus readonly>
+                                <input id="due_amount" type="text"
+                                       class="form-control @error('due_amount') is-invalid @enderror"
+                                       name="due_amount" value="{{ $row->due_amount }}" required autocomplete="due_amount" autofocus readonly>
 
-                                @error('sender')
+                                @error('due_amount')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -200,67 +212,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="payer_phone"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('Bank Code') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="sender" type="text"
-                                       class="form-control @error('sender') is-invalid @enderror"
-                                       name="sender" value="{{ $row->order_id }}" required autocomplete="sender" autofocus readonly>
-
-                                @error('sender')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="selected_merchant"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('Bank Code') }}</label>
+                            <label for="bank_code"
+                                   class="col-md-4 col-form-label text-md-right">{{ __('Select Merchant') }}</label>
 
                             <div class="col-md-6">
                                 <input id="bank_code" type="text"
-                                       class="form-control @error('selected_merchant') is-invalid @enderror"
-                                       name="selected_merchant" required autofocus>
+                                       class="form-control @error('bank_code') is-invalid @enderror"
+                                       name="bank_code" required autofocus>
 
-                                @error('selected_merchant')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <h1>Merchant Information</h1>
-                        <div class="form-group row">
-                            <label for="selected_merchant"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('Selected Merchant') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="selected_merchant" type="text"
-                                       class="form-control @error('selected_merchant') is-invalid @enderror"
-                                       name="selected_merchant" required autofocus>
-
-                                @error('selected_merchant')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="merchant_id"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('Payer Merchant ID') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="merchant_id" type="text"
-                                       class="form-control @error('merchant_id') is-invalid @enderror"
-                                       name="merchant_id" required autocomplete="merchant_id" autofocus>
-
-                                @error('merchant_id')
+                                @error('bank_code')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -283,7 +243,7 @@
 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">{{ __('Select bank') }}</div>
+                <div class="card-header">{{ __('Select Merchant') }}</div>
                 <div class="card-body">
                     <h5>
                     E-banks
@@ -307,7 +267,6 @@
         <script type="text/javascript">
             function getEbank()
             {
-                document.getElementById("selected_merchant").value = "{{ $bank['Bank_Name'] }}";
                 document.getElementById("bank_code").value = "{{ $bank['Bank_Code'] }}"
             }
             @endforeach
@@ -315,7 +274,6 @@
             @foreach ($list_banks['MBank'] as $bank)
             function getMbank()
             {
-                document.getElementById("selected_merchant").value = "{{ $bank['Bank_Name'] }}";
                 document.getElementById("bank_code").value = "{{ $bank['Bank_Code'] }}"
             }
             @endforeach
@@ -323,6 +281,8 @@
 
         @endforeach
     </div>
+        @endif
+    @endforeach
 </div>
 
 @endsection

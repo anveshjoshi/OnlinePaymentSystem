@@ -31,36 +31,8 @@ class InvoiceController extends Controller
         $invoice->due_date = request('due_date');
         $invoice->reminder_type = request('reminder_type');
         $invoice->reminder_date = request('reminder_date');
+        $invoice->status = "unpaid";
 
-//        $request->validate([
-//            'sender' => 'required|max:10',
-//            'payer_name' => 'required|max:255',
-//            'payer_email' => 'required|max:150',
-//            'payer_phone' => 'required|max:10',
-//            'payment_detail' => 'required|max:255',
-//            'due_amount' => 'required|max:7',
-//            'order_id' => 'required|max:4|unique:invoice',
-//            'tin' => 'required|max:4',
-//            'specified_merchant' => 'required|max:255',
-//            'due_date' => 'required|max:255',
-//            'reminder_type' => 'max:255',
-//            'reminder_date' => 'max:255',
-//        ]);
-//
-//        $invoice = new Invoice([
-//            'sender' => $request->get('sender'),
-//            'payer_name' => $request->get('payer_name'),
-//            'payer_email' => $request->get('payer_email'),
-//            'payer_phone' => $request->get('payer_phone'),
-//            'payment_detail' => $request->get('payment_detail'),
-//            'due_amount' => $request->get('due_amount'),
-//            'order_id' => $order_id,
-//            'tin' => $request->get('tin'),
-//            'specified_merchant' => $request->get('specified_merchant'),
-//            'due_date' => $request->get('due_date'),
-//            'reminder_type' => $request->get('reminder_type'),
-//            'reminder_date' => $request->get('reminder_date'),
-//        ]);
         $invoice->save();
 
         return redirect('/individual_user/notification');
@@ -103,5 +75,20 @@ class InvoiceController extends Controller
         $invoice = Invoice::latest()->paginate(5);
         return view('all_transactions', compact('invoice'))
             ->with('i', (request()->input('page', 1)-1)*5);
+    }
+
+    public function updatePaymentStatus(Request $request)
+    {
+        $status_code = $request->input('STATUS_CODE');
+        $transaction_id = $request->input('TRANSACTIONID');
+        $order_id = $request->input('ORDERID');
+
+
+        if($status_code==="111")
+        {
+            $invoice = Invoice::where('order_id', $order_id)->update(['status' => "paid"])->update(['transaction_id' => $transaction_id]);
+        }
+
+        return view('success')->with('status_code', $status_code)->with('transaction_id', $transaction_id);
     }
 }

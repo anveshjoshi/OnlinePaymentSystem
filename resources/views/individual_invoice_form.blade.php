@@ -127,57 +127,14 @@
                                 </div>
                             </div>
 
-                            {{--<div class="form-group row">--}}
-                                {{--<label for="order_id"--}}
-                                       {{--class="col-md-4 col-form-label text-md-right">{{ __('Order ID.') }}</label>--}}
-
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input id="order_id" type="number"--}}
-                                           {{--class="form-control @error('order_id') is-invalid @enderror" name="order_id"--}}
-                                           {{--required autocomplete="order_id" autofocus>--}}
-
-                                    {{--@error('order_id')--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                        {{--<strong>{{ $message }}</strong>--}}
-                                    {{--</span>--}}
-                                    {{--@enderror--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-
-                            {{--<div class="form-group row">--}}
-                                {{--<label for="tin"--}}
-                                       {{--class="col-md-4 col-form-label text-md-right">{{ __('TIN Number') }}</label>--}}
-
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input id="tin" type="number"--}}
-                                           {{--class="form-control @error('tin') is-invalid @enderror" name="tin" required--}}
-                                           {{--autocomplete="tin" autofocus>--}}
-
-                                    {{--@error('tin')--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                        {{--<strong>{{ $message }}</strong>--}}
-                                    {{--</span>--}}
-                                    {{--@enderror--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-
                             <div class="form-group row">
                                 <label for="specified_merchant"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Specify Merchant') }}</label>
 
                                 <div class="col-md-6">
-                                    {{--<select id="specified_merchant"--}}
-                                            {{--class="form-control @error('specified_merchant') is-invalid @enderror"--}}
-                                            {{--name="specified_merchant" required autocomplete="specified_merchant"--}}
-                                            {{--autofocus>--}}
-                                        {{--<option value="" disabled selected>Select Merchant</option>--}}
-                                        {{--<option value="e-Sewa">e-Sewa</option>--}}
-                                        {{--<option value="khalti">Khalti</option>--}}
-                                        {{--<option value="e-bank">E-bank</option>--}}
-                                    {{--</select>--}}
-                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="eSewa">eSewa
-                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="Khalti">Khalti
-                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="eBank">eBank
+                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="E-Bank">E-Bank
+                                    <input type="checkbox" id="specified_merchant" name="specified_merchant[]" value="M-Bank">M-Bank
+
                                     @error('specified_merchant')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -210,6 +167,7 @@
                                     </button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
