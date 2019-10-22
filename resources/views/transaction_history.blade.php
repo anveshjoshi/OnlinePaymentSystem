@@ -4,8 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h1>Transaction History</h1>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-dark">
                             <tr>
                                 <th>Payer Name</th>
                                 <th>Payer Email</th>
@@ -16,6 +15,7 @@
                                 <th>TIN Number</th>
                                 <th>Specified Merchant</th>
                                 <th>Due Date</th>
+                                <th>Status</th>
                             </tr>
                             @foreach($invoice as $row)
                                 <tr>
@@ -30,6 +30,7 @@
                                             {{ $merchant }} |
                                         @endforeach</td>
                                     <td>{{ $row->due_date }}</td>
+                                    <td>{{ $row->status }}</td>
                                 </tr>
                             @endforeach
                         </table>

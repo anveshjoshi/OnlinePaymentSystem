@@ -39,6 +39,13 @@
                 text-transform: uppercase;
             }
 
+            .wrap{
+                background: #ffff;
+                color: #1b1e21;
+                padding-top: 150px;
+
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -50,8 +57,10 @@
     <body>
             @include('navigation-bar')
             <div class="content">
+                <div class="wrap">
                 <div class="title m-b-md">
                     Online Payment System
+                </div>
                 </div>
             </div>
 

@@ -22,7 +22,6 @@
                                 <a href="{{ route('admin.register')  }}" style="text-decoration: none; color: #fff;">{{ __('Add another Admin') }}</a>
                             </button>
                     </div>
-
                 </div>
             </div>
         </div>

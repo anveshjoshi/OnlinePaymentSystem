@@ -100,14 +100,14 @@
     @if($row['status']=='paid')
         <h1>This invoice has been paid.</h1>
     @else
-    <div class="row justify-content-md-start">
+    <div class="row justify-content-md-start" style="padding-top: 20px">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Please fill this form to proceed to payment') }}</div>
                 <div class="card-body">
                     <form method="GET" action="{{ route('payment') }}">
                         @csrf
-@foreach($data as $row)
+                        @foreach($data as $row)
                         <h1>Payer Information</h1>
                         <div class="form-group row">
                             <label for="payer_name"
@@ -250,8 +250,7 @@
                     </h5>
                     <hr>
                         <img src="http://gateway.sandbox.npay.com.np/Images/testbank_logo.png" alt="e-test_bank" id="e-test_bank" onclick="getEbank()">
-
-
+                    <hr>
                     <h5>
                         Mobile banks
                     </h5>

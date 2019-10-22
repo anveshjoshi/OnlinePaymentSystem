@@ -86,7 +86,7 @@ class InvoiceController extends Controller
 
         if($status_code==="111")
         {
-            $invoice = Invoice::where('order_id', $order_id)->update(['status' => "paid"])->update(['transaction_id' => $transaction_id]);
+            $invoice = Invoice::where('order_id', $order_id)->update(['status' => "paid"]);
         }
 
         return view('success')->with('status_code', $status_code)->with('transaction_id', $transaction_id);
